@@ -1,4 +1,3 @@
-from xml.dom.pulldom import default_bufsize
 from django.db import models
 from django.forms import CharField, TextInput
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -8,9 +7,6 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 # Create your models here.
 
 class Quiz(models.Model):
-     
-    
-    
     question_one = models.TextField(blank=True,null=True,default=None)
     optA_question_one = models.CharField(max_length=50, default=None)
     optB_question_one = models.CharField(max_length=50, default=None)

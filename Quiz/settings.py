@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'Quiz.wsgi.application'
 #     }
 # }
 
-DATABASE ={
+DATABASES ={
     'default': {
         'ENGINE':'django.db.backends.postgresql_psycopg2',
         'NAME': 'd721o4enjf7egj',
