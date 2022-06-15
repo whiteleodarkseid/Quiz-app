@@ -34,5 +34,5 @@ urlpatterns = [
     path('fail/', fail_auth, name='fail_auth'),
     path('fail2/', fail2, name='fail2'),
     path('legend/', legend, name='legend'),
-    path('resut/<user_id>/', result, name='result'),
+    path('result/<user_id>/', result, name='result'),
 ]
