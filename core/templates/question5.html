@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Question</title>
+        <link rel="stylesheet" href="{% static 'style.css'%}">
+    </head>
+
+    <body>
+        <div class="containerr">
+            <div class="headingg"> {{quiz.question_five}} ?</div>
+
+
+            <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+                <div class="question-pack">
+
+
+                    <input class="radioinput" type="radio" value="option1" name="answers" id="radio1" >
+                    <label class="optdetails" for="radio1">{{quiz.optA_question_five}}</label>
+
+                    
+                    <input class="radioinput" type="radio" value="option2" name="answers" id="radio2" >
+                    <label class="optdetails" for="radio2">{{quiz.optB_question_five}}</label>
+
+                    <input class="radioinput" type="radio" value="option3" name="answers" id="radio3" >
+                    <label class="optdetails" for="radio3">{{quiz.optC_question_five}}</label>
+                   
+                </div>
+                <div class="buttonn">
+                    <input type="Submit" value="Submit">
+                </div>
+            </form>
+        </div>
+       
+        
+    </body>
+
+</html>

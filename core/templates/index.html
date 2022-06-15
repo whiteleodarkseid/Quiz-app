@@ -1,0 +1,46 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Login</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="{% static 'style.css'%}">
+        <link rel="shortcut icon" type="image/ico" href="{% static 'images/favicon.ico' %}"/>
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="heading">Login Page</div>
+            <form method="POST" enctype="multipart/form-data">
+                <div class="card-details">
+
+                    <div class="card-box">
+                        <span class="details">Name</span>
+						{% csrf_token %}   
+                        {% render_field form.name class="input" type="text" placeholder="Enter your Name" %}
+                        <!-- <input type="text" placeholder="Enter your Name"> -->
+                    </div>
+
+                    <div class="card-box">
+                        <span class="details">Phone Number</span>
+						{% render_field form.user class="input" placeholder="Enter your Phone No" type="phone" %}
+                        <!-- <input type="phone" placeholder="Enter your Phone No"> -->
+                    </div>
+
+
+                </div>
+                <div class="button">
+                    <input type="Submit" value="Login">
+                </div>
+            </form>
+        </div>  
+        
+    </body>
+</html>
+

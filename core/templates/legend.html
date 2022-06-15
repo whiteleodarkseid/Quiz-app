@@ -1,0 +1,46 @@
+{% load widget_tweaks %}
+<form method="POST" enctype="multipart/form-data" > 
+    {%csrf_token%}
+
+Question 1 - {% render_field   legend.question_one rows='2' %} {{legend.optA_question_one}},{{legend.optB_question_one}}, {{legend.optC_question_one}}
+
+<br>
+<br>
+<br>
+Question 2 - {% render_field  legend.question_two rows='2'  %} {{legend.optA_question_two}},{{legend.optB_question_two}}, {{legend.optC_question_two}}
+<br>
+<br>
+<br>
+Question 3- {% render_field legend.question_three rows='2' %} {{legend.optA_question_three}},{{legend.optB_question_three}}, {{legend.optC_question_three}}
+<br>
+<br>
+<br>
+Question 4 - {% render_field legend.question_four  rows='2' %} {{legend.optA_question_four}},{{legend.optB_question_four}}, {{legend.optC_question_four}}
+<br>
+<br>
+<br>
+Question 5 - {% render_field legend.question_five rows='2' %} {{legend.optA_question_five}},{{legend.optB_question_five}}, {{legend.optC_question_five}}
+<br>
+<br>
+<br>
+Question 6 - {% render_field legend.question_six rows='2' %} {{legend.optA_question_six}},{{legend.optB_question_six}}, {{legend.optC_question_six}}
+<br>
+<br>
+<br>
+Question 7- {% render_field legend.question_seven rows='2' %} {{legend.optA_question_seven }},{{legend.optB_question_seven }}, {{legend.optC_question_seven}}
+<br>
+<br>
+<br>
+Question 8 - {% render_field legend.question_eight rows='2' %} {{legend.optA_question_eight}},{{legend.optB_question_eight}}, {{legend.optC_question_eight}}
+<br>
+<br>
+<br>
+Question 9- {% render_field legend.question_nine rows='2' %} {{legend.optA_question_nine}},{{legend.optB_question_nine}}, {{legend.optC_question_nine}}
+<br>
+<br>
+<br>
+Question 10 - {% render_field legend.question_ten rows='2' %} {{legend.optA_question_ten}},{{legend.optB_question_ten}}, {{legend.optC_question_ten}}
+
+<button type="submit">SUBMIT ALL</button>
+
+</form>

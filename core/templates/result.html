@@ -1,0 +1,184 @@
+{% load static %}
+{% load widget_tweaks %}
+
+
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Result for {{user_answer.name}} </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="stylesheet" href="{% static 'style.css'%}"> -->
+        <link rel="shortcut icon" type="image/ico" href="{% static 'images/favicon.ico' %}"/>
+    </head>
+    <body>
+        <div class="smallbox">
+            <div class="fineresult"><span>Heading</span></div>
+            <div class="finetext"><span>Dear, {{user_answer.name}} <br> You got a total of 
+                {{user_answer.totalsec}} out of a possible 10</span></div>
+
+               
+            <div class="endemoji" >
+                {% if user_answer.totalsec == 10 %}
+                <p>congratulations!!!!,<br> We will now manually verify you (also,if you aren't the first then you will get just airtime)</p><br><br>
+                <img src="{% static 'images/celebrate.png' %}">
+                <div class="winner10">
+                <input type="text" value="option1" name="answers" id="radio1" placeholder="account number" ><br>
+                <div class="break"></div>
+                <input type="text" value="option1" name="answers" id="radio1" placeholder="account number" ><br>
+                <div class="break"></div>
+                <input type="text" value="option1" name="answers" id="radio1" placeholder="account number" ><br></div>
+                {% elif user_answer.totalsec >= 7 %}
+                <p>That was awesome, but wasn't perfect, but sit tight if everyone are dummies</p>
+                <img src="{% static 'images/tongueout.png' %}">
+                {% elif user_answer.totalsec >= 4 %}
+                <p>O boy, you don't know me quite enough</p>
+                <img src="{% static 'images/glasses.png' %}">
+                {% elif user_answer.totalsec >= 2 %}
+                <p>I wouldn't call you dumb but, </p>
+                <img src="{% static 'images/sweatlaugh.png' %}">
+                {% elif user_answer.totalsec >= 0 %}
+                <p>You are just irredeemable</p>
+                <img src="{% static 'images/clown.png' %}">
+                {% endif %}
+                
+            </div>
+            
+        </div>
+    </body>
+</html>
+
+<style>
+
+
+body {
+  background-image: url("{% static 'images/157156.jpg' %}");
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: 100% 100%;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.smallbox .endemoji{
+    background-size: 50% 50%;
+    max-width: 80%;
+    height: 100px;
+    width: 90%;
+    display: flex;
+    position: absolute;
+    /* top: 250px; */
+    justify-content: center;
+    text-align: center;
+    padding-top: 200px;
+    padding-left: 100px;
+    padding-right: 100px;
+    flex-wrap:wrap;
+}
+.smallbox .endemoji p{
+    justify-content: center;
+    color: red;
+    display: block;
+    position:relative;
+    /* top:500px; */
+    font-size: 20px;
+    font-weight: 400;
+}
+.smallbox .endemoji img{
+    position: relative;
+    height: 100px;
+    width: 100px; 
+}
+
+.endemoji .winner10{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    display: flex;
+    flex-basis: 100%;
+
+
+}
+
+/* .bigbox{
+    display: flex;
+    position: fixed;
+    color:white;
+    background: blue;
+    max-width: 1400px;
+    width: 100%;
+    height: 400px;
+    margin-top: 15%;
+    border-radius: 25px;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+} */
+.smallbox{
+    display: flex;
+    position: absolute;
+    color: blue;
+    background: white;
+    width: 60%;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    max-width: 1400px;
+    
+    height: 600px;
+    margin-top: 15%;
+    
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+    box-shadow:0 5px 60px 0 rgba(0, 0, 0, .45);
+    
+}
+.smallbox .fineresult{
+    font-size: 30px;
+    font-weight: 500;
+    color: brown;
+    position: relative;
+    padding: 0 0 20px 0;
+    justify-content: center;
+}
+
+.smallbox .fineresult::after{
+    content: '';
+    width: 600px;
+    height: 3px;
+    background: red;
+    color: red;
+    position: relative;
+    /* left:-200;
+    bottom: 220px; */
+    justify-content: center;
+    display: flex;
+    
+}
+.smallbox .finetext{
+    font-size: 25px;
+    font-weight: 500;
+    color: rgb(255, 4, 4);
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    padding: 40px;
+    /* bottom: 220; */
+}
+</style>
