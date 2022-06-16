@@ -30,7 +30,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['genquizapp.herokuapp.com']
+ALLOWED_HOSTS = ['genquizapp.herokuapp.com','www.badmuskolade.com','badmuskolade.com']
 
 
 # Application definition
