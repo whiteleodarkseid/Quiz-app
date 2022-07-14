@@ -1,6 +1,7 @@
 from dataclasses import fields
 from django.forms import ModelForm
 
+
 from .models import Quiz, UserAnswer
 
 
@@ -29,10 +30,10 @@ class UploadForm(ModelForm):
         'optA_question_eight','optB_question_eight', 'optC_question_eight','question_eight_c',
         'optA_question_nine','optB_question_nine', 'optC_question_nine','question_nine_c',
         'optA_question_ten','optB_question_ten', 'optC_question_ten','question_ten_c',
+
          ]
 
 class UploadUserAnswer(ModelForm):
-
     class Meta:
         model = UserAnswer
-        fields = ['id','name', 'user','verified']
+        fields = ['id','name', 'user','verified','winnername','winnernumber', 'winneraccount','Bank_name']

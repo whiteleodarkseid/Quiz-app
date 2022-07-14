@@ -16,7 +16,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from core.views import fail2, index, question, role,fail_auth, question2, question3, question4, question5, question10,  question6, question7, question8, question9, result,  legend,result 
+from core.views import topwin, thanks,fail2, index, question, role,fail_auth, question2, question3, question4, question5, question10,  question6, question7, question8, question9, result,  legend,result 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index' ),
@@ -35,4 +35,6 @@ urlpatterns = [
     path('fail2/', fail2, name='fail2'),
     path('legend/', legend, name='legend'),
     path('result/<user_id>/', result, name='result'),
+    path('thanks/', thanks, name='thanks'),
+    path('topwin/<user_id>/', topwin, name='topwin')
 ]

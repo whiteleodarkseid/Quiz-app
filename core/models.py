@@ -4,6 +4,8 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 
+
+
 # Create your models here.
 
 class Quiz(models.Model):
@@ -57,6 +59,7 @@ class Quiz(models.Model):
     optB_question_ten = models.CharField(max_length=50, default=None)
     optC_question_ten = models.CharField(max_length=50, default=None)
     question_ten_c = models.IntegerField(default=0, blank=True, null=True)
+    fastwinner = models.CharField(max_length=50, default=0, blank=True)
 
 class UserAnswer(models.Model):
     user_id = models.AutoField(primary_key=True)
@@ -94,14 +97,20 @@ class UserAnswer(models.Model):
     answer_tenC = models.IntegerField(validators=[MinValueValidator(0),MaxValueValidator(1)], default=0)
     answerTen_status = models.BooleanField(default=False, blank=True)
     total = models.IntegerField(default=0)
+    fastwinner =models.BooleanField(default=False, blank=True)
     
+    winnername = models.CharField(max_length=50, default=None, blank=True,null=True)
+    winnernumber =  models.CharField(max_length=11, default=None, blank=True,null=True)
+    winneraccount = models.CharField(max_length=10, default=None, blank=True, null=True)
+    Bank_name = models.CharField(max_length=50, default=None, blank=True,null=True)
 
 
     def user_id(self):
         return self.user_id
 
     def totalsec(self):
-        return self.answer_oneC + self.answer_twoC + self.answer_threeC + self.answer_fourC + self.answer_fiveC + self.answer_sixC + self.answer_sevenC + self.answer_eightC + self.answer_nineC + self.answer_tenC
+        dy = self.answer_oneC + self.answer_twoC + self.answer_threeC + self.answer_fourC + self.answer_fiveC + self.answer_sixC + self.answer_sevenC + self.answer_eightC + self.answer_nineC + self.answer_tenC
+        return dy
 
 
     

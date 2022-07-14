@@ -1,5 +1,3 @@
-
-
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
@@ -19,7 +17,7 @@ def index(request):
             # print(user_id)
             Reg_user = (form.cleaned_data['user'])
             # print(Reg_user)
-            list = ('+2347016803709','+2348136605455','075')
+            list = ('+2347016803709','+2348136605455','+234075', '+235678')
             if Reg_user in list:
                 verify = form.save(commit=False)
                 verify.verified = True
@@ -35,8 +33,7 @@ def index(request):
     }
     
     return render (request, 'index.html', context)
-
-    
+ 
 def role(request, user_id):
     print(user_id)
     user = UserAnswer.objects.get(pk=user_id)
@@ -57,38 +54,6 @@ def fail_auth(request):
 
 def fail2(request):
     return render(request, 'fail2.html')
-# def index(request):     
-
-#     if request.method == 'POST':
-#         form = UploadUserAnswer(request.POST)      
-#         if form.is_valid():
-#             form.save()
-#             user_id = form.save(id)
-#             user_id = user_id.id
-#             # print(user_id)
-#             Reg_user = (form.cleaned_data['user'])
-#             # print(Reg_user)
-#             list = ['+2347016803709','+2348136605455','075']
-#             for lists in list:
-#                 if Reg_user == lists:
-#                     verify = form.save(commit=False)
-#                     verify.verified = True
-#                     form.save()
-#                     return redirect('role', user_id)
-#                 elif Reg_user != list:
-#                     return redirect('fail2')
-#                     print('faggg')
-#                 else:
-#                     print('dummmmmmy')
-                
-#     else:
-#         form = UploadUserAnswer()
-#     context = {
-#         'form': form
-#     }
-    
-#     return render (request, 'index.html', context)
-
 
 def question(request, user_id):
     quiz = Quiz.objects.get()
@@ -125,8 +90,6 @@ def question(request, user_id):
     }
     return render (request, 'question.html', context)
 
-
-
 def question2(request, user_id):
     quiz = Quiz.objects.get()
     user_answer = UserAnswer.objects.get(pk=user_id)
@@ -161,7 +124,6 @@ def question2(request, user_id):
         'quiz':quiz
     }
     return render (request, 'question2.html', context)
-
 
 def question3(request, user_id):
     quiz = Quiz.objects.get()
@@ -198,7 +160,6 @@ def question3(request, user_id):
     }
     return render (request, 'question3.html', context)
 
-
 def question4(request, user_id):
     quiz = Quiz.objects.get()
     user_answer = UserAnswer.objects.get(pk=user_id)
@@ -233,7 +194,6 @@ def question4(request, user_id):
         'quiz':quiz
     }
     return render (request, 'question4.html', context)
-
 
 def question5(request, user_id):
     quiz = Quiz.objects.get()
@@ -270,7 +230,6 @@ def question5(request, user_id):
     }
     return render (request, 'question5.html', context)
 
-
 def question6(request, user_id):
     quiz = Quiz.objects.get()
     user_answer = UserAnswer.objects.get(pk=user_id)
@@ -305,7 +264,6 @@ def question6(request, user_id):
         'quiz':quiz
     }
     return render (request, 'question6.html', context)
-
 
 def question7(request, user_id):
     quiz = Quiz.objects.get()
@@ -427,8 +385,11 @@ def question10(request, user_id):
                 user_answer.answer_tenC += 1
                 user_answer.answer_ten = quiz.optA_question_ten
                 user_answer.full_clean()
+                total = user_answer.totalsec()
                 user_answer.save()
-                return redirect('result', user_id)
+                return redirect('topwin', user_id)
+                print(total)
+                
             
             elif selected_option == 'option2':
                 user_answer.answer_ten = quiz.optB_question_ten
@@ -437,32 +398,74 @@ def question10(request, user_id):
             elif selected_option == 'option3':
                 user_answer.answer_ten = quiz.optC_question_ten
                 user_answer.save() 
-            return redirect('result', user_id)
+            return redirect('topwin', user_id)
     
         # user_answer.answerTen_status = True
-        user_answer.total = total
+        user_answer.total = user_answer.totalsec()
         user_answer.save()
     context = {
         'quiz':quiz
     }
     return render (request, 'question10.html', context)
 
+def topwin(request, user_id):
+    quiz = Quiz.objects.get()
+    print(quiz.fastwinner + '1love')
+    user_answer = UserAnswer.objects.get(pk=user_id)
+    user_answer.total = user_answer.totalsec()
+    user_answer.save()
+    
+    if user_answer.total == 10:
+        if quiz.fastwinner == '0':
+            quiz.fastwinner = user_id
+            print(quiz)
+            quiz.save()
+            return redirect('result', user_id)
+            print('function ran')
+    
+
+
+
+    return redirect('result', user_id)
+
 def result(request, user_id):
     quiz = Quiz.objects.get()
     user_answer = UserAnswer.objects.get(pk=user_id)
     total = UserAnswer.totalsec
+    form = UploadUserAnswer(request.POST)
+    signal = 0
+    
+    print(user_id)
+    print(quiz.fastwinner)
+    if quiz.fastwinner == user_id: 
+        signal = True
+    
 
+
+    if request.method == 'POST':
+        user_answer.winnername = request.POST['winnername']
+        user_answer.winnernumber = request.POST['winnernumber']
+        user_answer.winneraccount = request.POST['winneraccount']
+        user_answer.Bank_name = request.POST['Bank_name']
+
+       
+
+        user_answer.save()
+        return redirect('thanks')
+
+        
+    
+        
+
+   
     context={
         'quiz':quiz,
         'user_answer':user_answer,
-        'total':total
+        'total':total,
+        'form':form,
+        'signal':signal
     }
     return render(request, 'result.html', context)
-
-
-
-
-
 
 def legend(request):
     if request.method == 'POST':
@@ -477,3 +480,6 @@ def legend(request):
         'legend':legend
     }
     return render(request, 'legend.html', context)
+
+def thanks(request):
+    return render(request,'thanks.html')
